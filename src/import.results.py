@@ -1,7 +1,7 @@
 import sqlite3
 import pandas as pd
 
-db_file = 'C:/DocaSilva/astrosena/data/lottery_results.db'
+db_file = 'C:/DocaSilva/astrosena/data/data_base.db'
 
 excel_file = 'C:/DocaSilva/astrosena/data/lottery_results.xlsx'
 
@@ -12,7 +12,7 @@ def create_table():
         cursor = conn.cursor()
 
         cursor.execute('''
-        CREATE TABLE IF NOT EXISTS lottery_results (
+        CREATE TABLE IF NOT EXISTS raw_lottery_results (
             contest INTEGER PRIMARY KEY,
             draw_date TEXT,
             ball1 INTEGER,
@@ -57,7 +57,7 @@ def import_results_data():
         print(df.head())
 
         sql_insert = '''
-        INSERT INTO lottery_results (
+        INSERT INTO raw_lottery_results (
             contest, draw_date, ball1, ball2, ball3, ball4, ball5, ball6,
             winners_6, city_state, payout_6, winners_5, payout_5,
             winners_4, payout_4, accumulated_6, total_revenue,
